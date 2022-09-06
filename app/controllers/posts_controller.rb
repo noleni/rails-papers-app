@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "Article publié !"
     else
-      redirect_to posts_path, status: :unprocessable_entity, notice: "url invalide"
+      redirect_to posts_path, status: :unprocessable_entity
     end
   end
 
@@ -42,6 +42,8 @@ class PostsController < ApplicationController
   end
 
   def valid?(url)
-    url.match(/https:\/\/www.socialter.fr\//)
+    # url.match(/https:\/\/www.socialter.fr\//)
+    true
   end
+
 end
