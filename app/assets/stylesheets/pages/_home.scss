@@ -4,6 +4,11 @@
   width: auto;
 }
 
+.home-titles {
+  width: 90%;
+  margin: auto;
+}
+
 #main-title {
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
@@ -29,15 +34,11 @@
 
   .home-img {
     display: flex;
+
   }
 
   .home-titles {
-    padding-top: 220px;
+    padding-top: 180px;
     padding-left: 200px;
-  }
-
-  .button-box {
-    padding-left: 200px;
-    margin-top: 50px;
   }
 }

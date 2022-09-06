@@ -8,6 +8,20 @@
       <% else %>
       <%= link_to "Connexion ou inscription", new_user_session_path, class: "btn btn-flat" %>
       <% end %>
+      <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Ajouter un article
+      </button>
+
+    <!-- Modal - Create comment -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <%= render "posts/form", comment: Post.new %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div id="astro-image">
