@@ -1,2 +1,74 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <h1><i class="fa-brands fa-phoenix-squadron"></i></h1>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item active">
+            <%= link_to "Consulter tous les articles", posts_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item dropdown">
+            <%= image_tag "user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-3">
+  <div class="row gx-5">
+    <h2 class="my-4 title"><%= @post.title %></h2>
+    <div class="col-8">
+
+      <%= cl_image_tag @post.photo.key, :quality=>60 , :crop=>"fill", class:'image-show' %>
+      <p class="mt-4 title"><%= @post.content %></p>
+      <p class="title"><%= @post.url %></p>
+    </div>
+    <div class="col-4">
+      <h4 class="title mb-4">Commentaires</h4>
+
+<!-- Button trigger modal -->
+      <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Ajouter un commentaire
+      </button>
+
+<!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <%= render "comments/form", comment: Comment.new %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-comments">
+        <% @post.comments.each do |comment| %>
+          <div class="d-flex justify-content-between">
+            <p class="comment-user-nickname title"><%= comment.user.nickname %> <%=  %></p>
+            <p class="comment-date">posté le <%= comment.created_at.strftime("%d-%m-%Y") %></p>
+          </div>
+          <p class="comment-user-content"><%= comment.content %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

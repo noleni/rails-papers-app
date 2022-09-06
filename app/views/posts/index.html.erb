@@ -1,2 +1,47 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <h1><i class="fa-brands fa-phoenix-squadron"></i></h1>
+    <% end %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <%= image_tag "user.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+            </div>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="w-50 mx-auto">
+  <h2 class="my-4 title">Toutes les publications (<%= @posts.count %>)</h2>
+  <div class="cards">
+    <% @posts.each do |post| %>
+    <div class="card-trip">
+      <%= cl_image_tag post.photo.key, height: 180, width: 400, :quality=>100, :crop=>"fill", class:'image-card-index' %>
+      <div class="card-trip-infos">
+        <div>
+          <h2><%= post.title %></h2>
+          <p>Posté par <%= post.user.nickname %></p>
+        </div>
+        <p><%= link_to "Consulter cet article", post_path(post), class:"link-to-posts-show" %></p>
+      </div>
+    </div>
+    <% end%>
+  </div>
+</div>
