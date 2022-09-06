@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'posts/show'
   root to: "pages#home"
   devise_for :users
-  resources :posts, only: %i[index show] do
+  resources :posts, only: %i[index show new create] do
     resources :comments, only: %i[index new create]
   end
 end

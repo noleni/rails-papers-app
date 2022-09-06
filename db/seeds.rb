@@ -1,4 +1,5 @@
 require "open-uri"
+require "nokogiri"
 
 Comment.destroy_all
 puts "all comments destroyed"

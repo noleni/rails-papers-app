@@ -30,18 +30,34 @@
 
 <div class="container">
   <h2 class="my-4 title">Toutes les publications (<%= @posts.count %>)</h2>
-  <div class="cards">
-    <% @posts.each do |post| %>
-    <div class="card-trip">
-      <%= cl_image_tag post.photo.key, height: 180, width: 400, :quality=>100, :crop=>"fill", class:'image-card-index' %>
-      <div class="card-trip-infos">
-        <div>
-          <h2><%= post.title %></h2>
-          <p>Posté par <%= post.user.nickname %></p>
+  <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Ajouter un article
+  </button>
+
+<!-- Modal - Create comment -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= render "posts/form", comment: Post.new %>
         </div>
-        <p><%= link_to "Consulter cet article", post_path(post), class:"link-to-posts-show" %></p>
       </div>
     </div>
+  </div>
+
+  <div class="cards">
+    <% @posts.each do |post| %>
+      <div class="card-trip">
+        <%= link_to post_path(post), class:"link-to-posts-show" do%>
+          <%= cl_image_tag post.photo.key, height: 180, width: 400, :quality=>100, :crop=>"fill", class:'image-card-index' %>
+          <div class="card-trip-infos">
+            <div>
+              <h2><%= post.title %></h2>
+              <p>Posté par <%= post.user.nickname %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end%>
   </div>
 </div>

@@ -1,0 +1,6 @@
+<div class="p-3 booking-form">
+  <%= simple_form_for [comment] do |f| %>
+    <%= f.input :url, label: false, placeholder: 'Ajouter l\'url de votre article ici', as: :text, autofocus: true, :input_html => {:style => 'width: 100%', :rows => 8, class: 'response-project'} %>
+    <%= f.submit "Publier", class: "btn btn-flat" %>
+  <% end %>
+</div>
