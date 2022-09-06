@@ -13,9 +13,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    url = @post.url
-    html_file = URI.open(url).read
-    html_doc = Nokogiri::HTML(html_file)
+    html_doc = Nokogiri::HTML(URI.open(@post.url).read)
     html_doc.search(".entry-title").each do |element|
       @post.title = element.text.strip
     end
@@ -33,7 +31,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to post_path(@post), notice: "Article publié !"
     else
-      redirect_to post_path(@post), status: :unprocessable_entity
+      redirect_to posts_path, status: :unprocessable_entity, notice: "url invalide"
     end
   end
 
@@ -41,5 +39,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:url, :title, :content, :photo)
+  end
+
+  def valid?(url)
+    url.match(/https:\/\/www.socialter.fr\//)
   end
 end
