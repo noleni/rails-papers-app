@@ -1,18 +1,16 @@
 <div class="home-img">
-  <div class="d-flex">
-    <div class="">
-        <h1 id="main-title">Papers</h1>
-        <h2 id="second-title">Partagez les meilleurs articles du web</h2>
-      <div class="button-box">
-        <% if user_signed_in? %>
-        <%= link_to "Consulter tous les articles", posts_path, class: "btn btn-flat" %>
-        <% else %>
-        <%= link_to "Connexion ou inscription", new_user_session_path, class: "btn btn-flat" %>
-        <% end %>
-      </div>
+  <div class="home-titles">
+    <h1 id="main-title">Papers</h1>
+    <h2 id="second-title">Partagez les meilleurs articles du web</h2>
+    <div class="button-box">
+      <% if user_signed_in? %>
+      <%= link_to "Consulter tous les articles", posts_path, class: "btn btn-flat" %>
+      <% else %>
+      <%= link_to "Connexion ou inscription", new_user_session_path, class: "btn btn-flat" %>
+      <% end %>
     </div>
-    <div class="">
-      <%= image_tag "astro.png", class:"home-img" %>
-    </div>
+  </div>
+  <div id="astro-image">
+    <%= image_tag "astro.png", class:"home-img" %>
   </div>
 </div>

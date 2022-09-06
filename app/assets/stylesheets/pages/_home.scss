@@ -1,1 +1,56 @@
-// Specific CSS for your home-page
+.home-img {
+  background-color: #071926;
+  height: 100vh;
+  width: auto;
+}
+
+.home-titles {
+
+
+}
+
+#main-title {
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 48px;
+  font-weight: bold;
+
+}
+
+#second-title {
+  color: white;
+  font-size: 33px;
+
+  // padding-left: 200px;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.button-box {
+  // padding-left: 200px;
+  // margin-top: 50px;
+}
+
+@media(max-width : 768px) {
+
+  #astro-image {
+    display:none;
+  }
+}
+
+@media(min-width : 768px) {
+
+  .home-img {
+    display: flex;
+  }
+
+  .home-titles {
+    padding-top: 220px;
+    padding-left: 200px;
+  }
+
+  .button-box {
+    padding-left: 200px;
+    margin-top: 50px;
+  }
+}

@@ -1,7 +1,7 @@
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .card-trip {
