@@ -2,6 +2,7 @@
   background-color: #071926;
   height: 100vh;
   width: auto;
+  padding-top: 20px;
 }
 
 .home-titles {
@@ -26,7 +27,7 @@
 @media(max-width : 768px) {
 
   #astro-image {
-    display:none;
+    // display:none;
   }
 }
 
@@ -34,11 +35,11 @@
 
   .home-img {
     display: flex;
-
+    padding-top: 0;
   }
 
   .home-titles {
-    padding-top: 180px;
-    padding-left: 200px;
+    padding-top: 120px;
+    padding-left: 160px;
   }
 }
