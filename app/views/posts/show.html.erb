@@ -34,22 +34,23 @@
 
 <div class="container mt-3">
   <div class="row gx-5">
+<!-- Post details -->
     <h2 class="my-4 title"><%= @post.title %></h2>
-    <div class="col-8">
+    <div class="col-12 col-md-8">
 
       <%= cl_image_tag @post.photo.key, :quality=>60 , :crop=>"fill", class:'image-show' %>
       <p class="mt-4 title"><%= @post.content %></p>
       <p class="title"><%= @post.url %></p>
     </div>
-    <div class="col-4">
-      <h4 class="title mb-4">Commentaires</h4>
 
-<!-- Button trigger modal -->
+<!-- Comments -->
+    <div class="col-12 col-md-4">
+      <h4 class="title mb-4">Commentaires</h4>
       <button type="button" class="btn btn-flat" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Ajouter un commentaire
       </button>
 
-<!-- Modal -->
+<!-- Modal - Create comment -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
