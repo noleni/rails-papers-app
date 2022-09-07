@@ -10,7 +10,7 @@ export default class extends Controller {
 
   check(event) {
     const regex = /https:\/\/www.socialter.fr\//
-    console.log(regex.test(event.target.value))
+    let searchParams = new URLSearchParams(event.target.value.trim())
     if (regex.test(event.target.value)) {
       this.buttonTarget.classList.remove('d-none');
       this.buttonTarget.classList.remove('disabled');

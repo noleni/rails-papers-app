@@ -2,6 +2,8 @@ require 'open-uri'
 require 'nokogiri'
 
 class PostsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def index
     @posts = Post.all
   end
@@ -26,10 +28,10 @@ class PostsController < ApplicationController
     html_doc.search(".entry-image img").each do |element|
       @post.photo.attach(
         io: URI.open(element.attribute("src").value),
-        filename: 'anyname.jpg',
-        content_type: 'image/jpg'
+        filename: 'anyname.jpg'
       )
     end
+    @post.user = current_user
     if @post.save
       redirect_to post_path(@post), notice: "Article publié !"
     else
@@ -44,7 +46,4 @@ class PostsController < ApplicationController
     params.require(:post).permit(:url, :title, :content, :photo)
   end
 
-  def valid?(el)
-    el.match(/https:\/\/www.socialter.fr\//)
-  end
 end

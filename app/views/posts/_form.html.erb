@@ -1,7 +1,5 @@
 <div class="p-3 booking-form" data-controller="validate-url">
   <%= simple_form_for [post], data: {validate_url_target: "form", action: "input->validate-url#check"} do |f| %>
-  <%= f.error_notification %>
-  <%= f.full_error :confirmation_token %>
     <%= f.input :url,
                 label: false,
                 required: true,
@@ -12,11 +10,6 @@
                 autofocus: true,
                 :input_html => {:style => 'width: 100%', :rows => 3, class: 'form-control', required:true} %>
     <%= f.submit "Publier", class: "btn btn-flat d-none", data: { validate_url_target: "button" }%>
-   <% end %>
-
-  <% if post.errors.any? %>
-  <% post.errors.full_messages.each do |message| %>
-    <p><%= message %></p>
   <% end %>
-<% end %>
+
 </div>
