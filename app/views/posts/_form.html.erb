@@ -4,12 +4,12 @@
                 label: false,
                 required: true,
                 placeholder: 'Ajouter l\'url de votre article ici.',
-                hint: 'Attention, seuls les articles du site https://www.socialter.fr/ sont pris en charge.',
                 as: :text,
-
                 autofocus: true,
                 :input_html => {:style => 'width: 100%', :rows => 3, class: 'form-control', required:true} %>
     <%= f.submit "Publier", class: "btn btn-flat d-none", data: { validate_url_target: "button" }%>
   <% end %>
-
+  <div class="form-text" data-validate-url-target="hint">
+    <p>Attention, seuls les articles du site https://www.socialter.fr/ sont pris en charge.</p>
+  </div>
 </div>
