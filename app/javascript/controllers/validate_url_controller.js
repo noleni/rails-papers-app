@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="validate-url"
 export default class extends Controller {
-  static targets = ["form", "button"]
+  static targets = ["form", "button", "hint"]
 
   connect() {
     console.log(this.formTarget)
@@ -10,13 +10,14 @@ export default class extends Controller {
 
   check(event) {
     const regex = /https:\/\/www.socialter.fr\//
-    let searchParams = new URLSearchParams(event.target.value.trim())
-    if (regex.test(event.target.value)) {
+    if (regex.test(event.target.value.trim())) {
       this.buttonTarget.classList.remove('d-none');
       this.buttonTarget.classList.remove('disabled');
+      this.hintTarget.classList.add('d-none');
     } else {
       this.buttonTarget.classList.remove('d-none');
       this.buttonTarget.classList.add('disabled');
+      this.hintTarget.classList.remove('d-none');
     }
   }
 }
